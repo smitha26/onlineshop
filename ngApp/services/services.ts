@@ -27,14 +27,14 @@ namespace onlineshop.Services {
             return this.SigninResource.query();
         }
         public save(product){
-           return this.SigninResource.save(product);
-         }
-         public get(productId) {
-      return this.SigninResource.get({id: productId});
-    }
-    public remove(productId) {
-      return this.SigninResource.remove({id: productId}).$promise;
-    }
+            return this.SigninResource.save(product).$promise;
+        }
+        public get(productId) {
+            return this.SigninResource.get({id: productId});
+        }
+        public remove(productId) {
+            return this.SigninResource.remove({id: productId}).$promise;
+        }
         constructor($resource: ng.resource.IResourceService) {
             this.SigninResource = $resource('/api/signup/:id');
         }
@@ -42,4 +42,50 @@ namespace onlineshop.Services {
     angular.module('onlineshop').service('signinService',SigninService);
 
 
+
+    //Login service
+    export class LoginService {
+        private LoginResource;
+
+        public list() {
+            return this.LoginResource.query();
+        }
+        public save(product){
+            return this.LoginResource.save(product).$promise;
+        }
+        public get(productId) {
+            return this.LoginResource.get({id: productId});
+        }
+        public remove(productId) {
+            return this.LoginResource.remove({id: productId}).$promise;
+        }
+        constructor($resource: ng.resource.IResourceService) {
+            this.LoginResource = $resource('/api/login');
+        }
     }
+    angular.module('onlineshop').service('loginService',LoginService);
+
+
+
+    //Login service
+    export class CartService {
+        private CartResource;
+
+        public list() {
+            return this.CartResource.query();
+        }
+        public save(product){
+            return this.CartResource.save(product).$promise;
+        }
+        public get(productId) {
+            return this.CartResource.get({id: productId});
+        }
+        public remove(productId) {
+            return this.CartResource.remove({id: productId}).$promise;
+        }
+        constructor($resource: ng.resource.IResourceService) {
+            this.CartResource = $resource('/api/cart');
+        }
+    }
+    angular.module('onlineshop').service('cartService',CartService);
+}

@@ -4,6 +4,10 @@ import * as mongodb from 'mongodb';
 let router = express.Router();
 
 
+// router.get('/bob', function(req, res) {
+//     res.json ({ name: 'bob' });
+// });
+
 router.post('/', function(req, res) {
     console.log('--------');
     console.log('form data: ',req.body);
@@ -13,10 +17,12 @@ router.post('/', function(req, res) {
             res.redirect('/error');
         }else{
             console.log('take me to profile');
-            res.redirect ('/home')
+            res.json ({});
+            // res.redirect ('/home')
             // res.render('home.ejs', {
             //     message:'Signup was successfull. Please login to your account '
             // });
+            
         }
     });
 

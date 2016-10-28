@@ -9,12 +9,20 @@ import * as ejs from 'ejs';
 import routes from './routes/index';
 import users from './routes/users';
 import Database from './db';
- import shopproducts from './api/shopproducts';
+import shopproducts from './api/shopproducts';
 //import admin from './api/admin';
-import signup from './api/signup';
+
 let app = express();
 
 let session = require('express-session');
+
+app.use(session({
+    secret: 'keyboard cat', //used to salt the hash
+    //keep the session
+    resave: false,
+    saveUninitialized: true
+}));
+
 // open database connection
 Database.connect().then(() => {
     // drop everything
@@ -76,7 +84,20 @@ app.use('/', routes);
 app.use('/users', users);
 app.use('/api/shopproducts', shopproducts);
 //app.use('/api/admin', admin);
+
+
+import signup from './api/signup';
 app.use('/api/signup', signup);
+
+import login from './api/login';
+app.use('/api/login', login);
+
+import cart from './api/cart';
+app.use('/api/cart', cart);
+
+// /api/signup/
+// /api/signup/bob
+
 // redirect 404 to home for the sake of AngularJS client-side routes
 app.get('/*', function(req, res, next) {
   if (/.js|.html|.css|templates|js|scripts/.test(req.path) || req.xhr) {
@@ -118,18 +139,15 @@ app.use((err:Error, req, res, next) => {
   });
 });
 
-app.use(session({
-    secret: 'keyboard cat', //used to salt the hash
-    //keep the session
-    resave: false,
-    saveUninitialized: true
-}))
 
-app.get('/profile', function(req, res) {
-    let user = req.session.user;
-    // console.log(app.get('user'));
-    res.render('profile.ejs', {user: user});
-    res.redirect('profile.ejs');
-});
 
+// app.get('/profile', function(req, res) {
+//     let user = req.session.user;
+//     console.log(app.get('user'));
+//     res.render('profile.ejs', {user: user});
+//     res.redirect('profile.ejs');
+// });
+// app.get('/aftersignuplogin', function(req, res) {
+//     res.redirect('aftersignuplogin.ejs');
+// });
 export = app;

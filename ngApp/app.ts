@@ -19,22 +19,34 @@ namespace onlineshop {
                 controller: onlineshop.Controllers.SignupController,
                 controllerAs: 'controller'
             })
+            .state('aftersignuplogin', {
+                url: '/aftersignuplogin',
+                templateUrl: '/ngApp/views/aftersignuplogin.ejs',
+                controller: onlineshop.Controllers.AboutController,
+                controllerAs: 'controller'
+            })
             .state('login', {
                 url: '/login',
-                templateUrl: '/ngApp/views/login.ejs',
-                controller: onlineshop.Controllers.HomeController,
+                templateUrl: '/ngApp/views/login.html',
+                controller: onlineshop.Controllers.LoginController,
                 controllerAs: 'controller'
             })
             .state('profile', {
                 url: '/profile',
-                templateUrl: '/ngApp/views/profile.ejs',
+                templateUrl: '/ngApp/views/profile.html',
                 controller: onlineshop.Controllers.HomeController,
+                controllerAs: 'controller'
+            })
+            .state('cart', {
+                url: '/cart',
+                templateUrl: '/ngApp/views/cart.html',
+                controller: onlineshop.Controllers.CartController,
                 controllerAs: 'controller'
             })
             .state('admin', {
                 url: '/admin',
                 templateUrl: '/ngApp/views/admin.ejs',
-                controller: onlineshop.Controllers.SignupController,
+                controller: onlineshop.Controllers.HomeController,
                 controllerAs: 'controller'
             })
             .state('about', {
@@ -42,6 +54,10 @@ namespace onlineshop {
                 templateUrl: '/ngApp/views/about.html',
                 controller: onlineshop.Controllers.AboutController,
                 controllerAs: 'controller'
+            })
+            .state('error', {
+                url: '/error',
+                templateUrl: '/ngApp/views/error.ejs',
             })
             .state('notFound', {
                 url: '/notFound',

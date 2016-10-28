@@ -6,10 +6,14 @@
     </head>
     <body>
         <h1>Login</h1>
-        <form action="/login" method="POST">
-            <input type="text" placeholder="username" name="username">
-            <input type="password" placeholder="password" name="password">
-            <button type="submit">Login</button>
+        <form ng-submit="controller.save()">
+            <div class="form-group">
+                <label>USERNAME:</label><br/>
+                <input ng-model=controller.product.username style="width:400px"/><hr/>
+                <label>PASSWORD:</label><br/>
+                <input ng-model=controller.product.password style="width:400px"/><hr/>
+                <button type="submit" class="btn btn-primary">Login</button>
+            </div>
         </form>
 
     </body>
