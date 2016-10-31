@@ -1,4 +1,9 @@
-const connectionString:string = 'mongodb://smithaG:sgki2345@ds063536.mlab.com:63536/shopproducts';
+const connectionString:string = 'mongodb://smithaG:sgki2345@ds049104.mlab.com:49104/products';
+
+
+// 'mongodb://smithaG:sgki2345@ds049104.mlab.com:49104/products';
+
+// 'mongodb://smithaG:sgki2345@ds063536.mlab.com:63536/shopproducts';
 
 import * as mongodb from 'mongodb';
 

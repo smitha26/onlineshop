@@ -15,7 +15,8 @@ namespace onlineshop.Services {
           return this.ProductResource.get({id: productId});
    }
         constructor($resource: ng.resource.IResourceService) {
-            this.ProductResource = $resource('/api/shopproducts/:id');
+            // this.ProductResource = $resource('/api/shopproducts/:id');
+            this.ProductResource = $resource('/api/products/:id');
         }
     }
     angular.module('onlineshop').service('productService', ProductService);
@@ -71,11 +72,16 @@ namespace onlineshop.Services {
     export class CartService {
         private CartResource;
 
+
         public list() {
             return this.CartResource.query();
         }
         public save(product){
+            console.log("This is the cart product in service ", product)
             return this.CartResource.save(product).$promise;
+        }
+        public savecart(cart){
+            return this.CartResource.save(cart).$promise;
         }
         public get(productId) {
             return this.CartResource.get({id: productId});

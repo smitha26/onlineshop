@@ -7,10 +7,73 @@ let router = express.Router();
 // console.log('Item added by id: ' + request.params.id);
 // var objectId = request.params.id;
 
-router.get ('/', function (request, response) {
+// router.get ('/', function (request, response) {
+//     response.json ({
+//         message: 'This is a test route for the cart.'
+//     });
+// });
+
+router.post ('/', function (request, response) {
+    let cart = request.session.cart;
+    let product = request.body;
+    let objectId = request.params.id;
+    console.log(request.body);
+
+        if (!cart) {
+            cart= {
+                total:0,
+                itemList:[]
+            };
+            //Save the cart to the session
+            request.session.cart = cart;
+        }
+        //Add the product to the cart session
+        cart.itemList.push (product);
+        //Add price to total
+        cart.total = cart.total + product.price;
+        console.log('This is server cart session: ', cart);
     response.json ({
+        product: request.body,
         message: 'This is a test route for the cart.'
     });
+    // response.redirect('/cart');
+});
+
+router.get('/', function(request, response){
+// - Get the cart out of the session.
+// - Grab the cart items.
+// - Send back those items as a response in json format.
+    let i = 0;
+    let name;
+    let price;
+    let cart = request.session.cart;
+    let items = cart.itemList;
+    let total = cart.total;
+    let itemName = cart.itemList[0].name;
+
+    console.log("this is items ", itemName);
+    console.log("this is items ", cart);
+    console.log("this is total ", total);
+    console.log("this is itemlist_len" , cart.itemList.length);
+    // let name0 = cart.itemList[0].name;
+    // let price0 = cart.itemList[0].price;
+
+    // console.log("this is name and price  ", name0, price0);
+
+    // response.json(cart.itemList);
+     response.json(cart);
+
+    // console.log("this is items ", total);
+    // response.json ({cart.itemList});
+    // response.json({
+    //     data: {
+    //         redirect: 'error',
+    //         message: 'Username and Login was not correct.'
+    //     }
+    // });
+
+
+    // response.render('cart.html', {cart:cart});
 });
 
 export default router;

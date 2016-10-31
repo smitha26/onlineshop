@@ -23,47 +23,61 @@ app.use(session({
     saveUninitialized: true
 }));
 
-// open database connection
+//open database connection
 Database.connect().then(() => {
-    // drop everything
-    Database.db.dropDatabase().then(() => {
-        // seed with new products
-        Database.db.collection('shopproducts').insert([
-            {
-                image: 'https://s-media-cache-ak0.pinimg.com/originals/15/a5/3c/15a53c2ea7a55218eccf474be4674270.jpg',
-                style: 'Add Any Available Sales Channels',
-                color:'red',
-                price: 68
-            },{
-                image:'http://weknowyourdreams.com/images/dress/dress-02.jpg',
-                style: 'Add Any Available Sales Channels',
-                color:'red',
-                price: 68
-            },{
-                image:'https://a2ua.com/dress/dress-027.jpg',
-                style: 'Add Any Available Sales Channels',
-                color:'red',
-                price: 68
-            },
-            {
-                image:'https://s-media-cache-ak0.pinimg.com/236x/d3/52/59/d35259d14e851f5e30a096104744230f.jpg',
-                style: 'Add Any Available Sales Channels',
-                color:'red',
-                price: 68
-            }
-        ]);
-
-        Database.db.collection('users').insert([
-            {
-                username:'smitha',
-                password: 'gopalan'
-            },{
-                username:'mike',
-                password: 'test'
-            }
-        ]);
-    });
+  // drop everything
+  Database.db.dropDatabase().then(() => {
+    // seed with new products
+    Database.db.collection('products').insert([
+      {name:'Apples', price: 9.33},
+      {name:'Milk', price: 2.00},
+      {name:'Cheese', price: 4.55}
+    ]);
+  });
 })
+
+
+// // open database connection
+// Database.connect().then(() => {
+//     // drop everything
+//     Database.db.dropDatabase().then(() => {
+//         // seed with new products
+//         Database.db.collection('shopproducts').insert([
+//             {
+//                 image: 'https://s-media-cache-ak0.pinimg.com/originals/15/a5/3c/15a53c2ea7a55218eccf474be4674270.jpg',
+//                 style: 'Add Any Available Sales Channels',
+//                 color:'red',
+//                 price: 68
+//             },{
+//                 image:'http://weknowyourdreams.com/images/dress/dress-02.jpg',
+//                 style: 'Add Any Available Sales Channels',
+//                 color:'red',
+//                 price: 68
+//             },{
+//                 image:'https://a2ua.com/dress/dress-027.jpg',
+//                 style: 'Add Any Available Sales Channels',
+//                 color:'red',
+//                 price: 68
+//             },
+//             {
+//                 image:'https://s-media-cache-ak0.pinimg.com/236x/d3/52/59/d35259d14e851f5e30a096104744230f.jpg',
+//                 style: 'Add Any Available Sales Channels',
+//                 color:'red',
+//                 price: 68
+//             }
+//         ]);
+//
+//         Database.db.collection('users').insert([
+//             {
+//                 username:'smitha',
+//                 password: 'gopalan'
+//             },{
+//                 username:'mike',
+//                 password: 'test'
+//             }
+//         ]);
+//     });
+// })
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -94,6 +108,9 @@ app.use('/api/login', login);
 
 import cart from './api/cart';
 app.use('/api/cart', cart);
+
+import products from './api/products';
+app.use('/api/products', products);
 
 // /api/signup/
 // /api/signup/bob

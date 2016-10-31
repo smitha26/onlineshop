@@ -2,10 +2,19 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title></title>
+        <title>Shopping  Cart</title>
     </head>
-    <p>This is cart page</p>
-    <body>
+        <body>
 
-    </body>
+                <p>This is my Shopping Cart Page</p>
+                <h2>Shopping Cart</h2>
+                    <ul>
+                       <li ng-repeat="product in controller.products">
+                         {{product.name}}, {{product.price|currency}}<br>
+                        <a href="#/checkout">Proceed to checkout</a>
+                      </li>
+                    </ul>
+
+
+        </body>
 </html>

@@ -5,6 +5,16 @@ namespace onlineshop.Controllers {
         public products;
         public product;
 
+        public addToCart(product){
+            this.cartService.save(product).then(() => {
+                console.log("going to CART");
+                this.$state.go ('cart');
+            });
+        };
+        // public addToCart(product){
+        //     console.log("Adding item to the cart ", product);
+        //     this.cartService.save(product);
+        // }
         public save() {
             this.productService.save(this.product).then(() => {
                 //this.todolisting.push(this.todolist);
@@ -22,6 +32,7 @@ namespace onlineshop.Controllers {
 
 
         constructor(private productService:onlineshop.Services.ProductService,
+            private cartService:onlineshop.Services.CartService,
             private $state:ng.ui.IStateService,
             private $stateParams:ng.ui.IStateParamsService)
             {
@@ -118,21 +129,15 @@ namespace onlineshop.Controllers {
 
         //Controller for Cart
         export class CartController {
-            public newitem;
-            public items;
+            public products;
+            public product;
+            public cart;
+            public itemlist;
 
-            public addItemtoCart() {
-                console.log ('- Adding cart to item.');
+            public save() {
+                this.cartService.save(this.product).then((response) => {
+                    console.log('response: ', response)
 
-                let newitem = {
-                    name: 'Blue Dress',
-                    description: 'Some description',
-                    price: 200
-                };
-
-                this.cartService.save(newitem).then(() => {
-                    // this.items.push(this.newitem);
-                    // this.newitem = null;
                 });
             }
 
@@ -143,9 +148,40 @@ namespace onlineshop.Controllers {
             ) {
 
                 // Grab the items in the cart.
-                this.items = cartService.list();
+
+                // this.itemlist = response.itemlist;
+                // this.total = response.total;
+                // this.products = this.itemlist;
+                // this.itemlist = cartService.list();
+                // this.products = this.itemlist;
+                // this.products = cartService.list();
+                // this.total = cartService.list();
+                console.log("this is  itemlist in cartcontroller ", this.products);
             }
         }
+
+
+            // public addItemtoCart() {
+            //     console.log ('- Adding cart to item.');
+
+                // let newitem = {
+                //     name: 'Blue Dress',
+                //     description: 'Some description',
+                //     price: 200
+                // };
+
+                // this.cartService.save(newitem).then((response) => {
+                //     console.log ('Newitem ', response);
+                    // this.items.push(this.newitem);
+                    // this.newitem = null;
+                    // for (i = 0; i<cart.itemList.length; i++){
+                    //     name[i] = cart.itemList[i].name;
+                    //     price[i] = cart.itemList[i].price;
+                    //     console.log("this is inside for loop ", name[i], price[i]);
+            //         // }
+            //     });
+            // }
+
 
             //Controller for About Page
             export class AboutController {

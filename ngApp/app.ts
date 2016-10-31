@@ -37,6 +37,12 @@ namespace onlineshop {
                 controller: onlineshop.Controllers.HomeController,
                 controllerAs: 'controller'
             })
+            .state('products', {
+                url: '/products',
+                templateUrl: '/ngApp/views/product.html',
+                controller: onlineshop.Controllers.HomeController,
+                controllerAs: 'controller'
+            })
             .state('cart', {
                 url: '/cart',
                 templateUrl: '/ngApp/views/cart.html',
