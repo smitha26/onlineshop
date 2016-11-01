@@ -133,9 +133,10 @@ namespace onlineshop.Controllers {
             public product;
             public cart;
             public itemlist;
+            public total;
 
-            public save() {
-                this.cartService.save(this.product).then((response) => {
+            public getcart() {
+                this.cartService.list().then((response) => {
                     console.log('response: ', response)
 
                 });
@@ -152,11 +153,27 @@ namespace onlineshop.Controllers {
                 // this.itemlist = response.itemlist;
                 // this.total = response.total;
                 // this.products = this.itemlist;
-                // this.itemlist = cartService.list();
-                // this.products = this.itemlist;
-                // this.products = cartService.list();
-                // this.total = cartService.list();
-                console.log("this is  itemlist in cartcontroller ", this.products);
+
+                // Make the call to the endpoint and grab the promise
+                // so we know when the call is completed.
+                let promise = cartService.list().$promise;
+
+                // When the request is completed (we got a message back from server)
+                // "then" do some action.
+                promise.then ((response) => {
+                    // this.itemlist = cartService.list();
+
+                    let cart = response [0];
+                    this.products = cart.itemList;
+                    this.total = cart.total;
+
+                    // // this.products = cartService.list();
+                   // // this.total = cartService.list();
+                   console.log("this is  itemlist in cartcontroller ", response);
+                //    console.log("this is  itemlist in cartcontroller ", this.itemlist);
+                //    console.log("this is  itemlist in cartcontroller ", this.itemlist [0]);
+                });
+
             }
         }
 

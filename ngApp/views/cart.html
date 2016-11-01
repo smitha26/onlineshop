@@ -10,9 +10,12 @@
                 <h2>Shopping Cart</h2>
                     <ul>
                        <li ng-repeat="product in controller.products">
-                         {{product.name}}, {{product.price|currency}}<br>
-                        <a href="#/checkout">Proceed to checkout</a>
+                         {{product.name}}, {{product.price|currency}}<br/>
                       </li>
+                     <div>
+                      <label>Total:</label> {{controller.total}}<br/>
+                      <a href="#/checkout">Proceed to checkout</a>
+                    </div>
                     </ul>
 
 

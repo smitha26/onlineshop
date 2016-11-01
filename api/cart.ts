@@ -58,10 +58,17 @@ router.get('/', function(request, response){
     // let name0 = cart.itemList[0].name;
     // let price0 = cart.itemList[0].price;
 
-    // console.log("this is name and price  ", name0, price0);
+    response.json ([cart]);
 
+    // console.log("this is name and price  ", name0, price0);
+    //  cart.itemList.push({
+    //     name: 'Cart total',
+    //     price: cart.total,
+    //      total: cart.total
+    //  });
+    //  console.log("this is itemlist" , cart.itemList);
     // response.json(cart.itemList);
-     response.json(cart);
+    //  response.json(cart);
 
     // console.log("this is items ", total);
     // response.json ({cart.itemList});
